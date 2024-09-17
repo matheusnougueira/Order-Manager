@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">  <!-- Alterando o status para DEBUG -->
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+    </Console>
+    <File name="FileLog" fileName="logs/application.log" append="true"> <!-- Certifique-se de que o
+      log será anexado -->
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+    </File>
+  </Appenders>
+
+  <Loggers>
+    <Root level="DEBUG">  <!-- Alterando para DEBUG para capturar mais detalhes -->
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="FileLog" />
+    </Root>
+
+    <!-- Logger específico para o pacote br.com.sibs -->
+    <Logger name="br.com.sibs" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="FileLog" />
+    </Logger>
+
+    <!-- Logger específico para o Hibernate, caso necessário -->
+    <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="FileLog" />
+    </Logger>
+
+    <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="FileLog" />
+    </Logger>
+
+  </Loggers>
+</Configuration>
